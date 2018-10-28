@@ -80,8 +80,9 @@ TSN Configurations:
         if 'vgg' in base_model:
             from my_model.vgg import vgg19_bn as MY_VGG
             self.base_model = MY_VGG(False)
-            model_dict = self.base_model.state_dict()
-            pretrained_model = getattr(torchvision.models, base_model)(True)
+            model_dict = self.base_model.state_dict
+            model_name = 'vgg19_bn'
+            pretrained_model = getattr(torchvision.models, model_name)(True)
             pretrained_dict = pretrained_model.state_dict()
             pretrained_dict = {k:v for k,v in pretrained_dict.items() if k in model_dict}
             model_dict.update(pretrained_dict)
